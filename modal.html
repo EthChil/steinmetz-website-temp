@@ -1,0 +1,194 @@
+<style>
+	.modal-head {
+		font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		position: absolute;
+		width: 40rem; 
+		z-index: 50;
+		margin: auto;
+		top: 2rem;
+		background-color: black;
+		border-width: 1px;
+		padding-bottom: 0.5rem;
+		border-style: solid;
+		border-color: #494949;
+		box-sizing: border-box;
+		border-radius: 0.5rem;
+	}
+	.modal-content {
+		display: flex;
+		padding: 1.5rem 2rem 0.5rem 2rem;
+		align-items: center;
+		flex-direction: column;
+	}
+	#modal-parent { 
+		position: absolute;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		top: 3rem;
+	}
+	#modal-bg {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh; /* Ensures it covers the full viewport height */
+		background-color: #000000b8;
+		z-index: 10;
+	}
+	.modal-content-title { 
+		font-size: 1.3rem;
+		font-weight: 400;
+		text-align: center;
+	}
+	.close-button {
+		text-align: center;
+		font-size: 1.3rem;
+		color: #797979;
+		user-select: none;
+	}
+	.form-input-parent {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		padding-top: 1rem;
+	}
+	.form-input-div { 
+		display: flex;
+		flex-direction: column;
+		font-size: 0.9rem;
+		color: #797979;
+	}
+	.form-input-div-1 { 
+		flex: 0 0 100%;
+	}
+	.form-input-div-2 { 
+		flex: 0 0 45%;
+	}
+	.form-input-div > label {
+		padding-bottom: 5px;
+	}
+	.form-input-div > input {
+		border-radius: 0.5rem;
+		background-color: rgba(24,24,27,.8);
+		font-size: 1rem;
+		color: rgb(228 228 231);
+		padding: 0.5em;
+		border-color: rgba(39,39,42,.8);
+		border-width: 1px;
+		box-sizing: border-box;
+		border-style: solid;
+		line-height: 24px;
+		height: 42px;
+	}
+	.form-input-div > textarea {
+		border-radius: 0.5rem;
+		background-color: rgba(24,24,27,.8);
+		font-size: 1rem;
+		color: rgb(228 228 231);
+		padding: 0.5em;
+		border-color: rgba(39,39,42,.8);
+		border-width: 1px;
+		box-sizing: border-box;
+		border-style: solid;
+		line-height: 24px;
+		height: 6rem;
+		resize: vertical;
+	}
+	#submit_button > button {
+		color: rgb(249 115 22);
+		background-color: rgb(124 45 18 / 0.3);
+		border-radius: 0.25rem;
+		padding: 0.75em;
+		font-size: 16px;
+		border-color: rgba(39,39,42,.8);
+		border-width: 1px;
+		box-sizing: border-box;
+		border-style: solid;
+	}
+	.form-req {
+		color: red;
+	}
+	.resp_message {
+		padding-top: 1rem;
+		visibility: hidden;
+		color: red;
+	}
+	.resp_message_error { 
+		visibility: visible;
+		color: red;
+	}
+	.resp_message_success { 
+		visibility: visible;
+		color: green;
+	}
+</style>
+<div id="modal-parent">
+	<div class="modal-head">
+		<div class="modal-content">
+			<div style="display: flex; justify-content: space-between; align-items: center; width: 100%">
+				<div class="modal-content-title">CONTACT US</div>
+				<div onclick="hide_modal()" class="close-button">
+					✕
+				</div>
+			</div>
+			<div class="form-input-parent" style="">
+				<div id="firstname" class="form-input-div form-input-div-2">
+					<label>FIRST NAME <span class="form-req">*</span></label>
+					<input placeholder="John"></input>
+				</div>
+				<div id="lastname" class="form-input-div form-input-div-2">
+					<label>LAST NAME <span class="form-req">*</span></label>
+					<input placeholder="Smith"></input>
+				</div>
+			</div>
+			<div class="form-input-parent" style="">
+				<div id="email" class="form-input-div form-input-div-1">
+					<label>EMAIL ADDRESS <span class="form-req">*</span></label>
+					<input placeholder="name@example.com"></input>
+				</div>
+			</div>
+			<div class="form-input-parent" style="">
+				<div id="company_name" class="form-input-div form-input-div-1">
+					<label>COMPANY NAME</label>
+					<input placeholder="Future Motors Inc."></input>
+				</div>
+			</div>
+			<div class="form-input-parent" style="">
+				<div id="job_title" class="form-input-div form-input-div-1">
+					<label>JOB TITLE</label>
+					<input placeholder="CTO"></input>
+				</div>
+			</div>
+			<div class="form-input-parent" style="">
+				<div id="company_location" class="form-input-div form-input-div-1">
+					<label>COMPANY LOCATION</label>
+					<input placeholder="San Francisco, CA"></input>
+				</div>
+			</div>
+			<div class="form-input-parent" style="">
+				<div id="unit_number" class="form-input-div form-input-div-1">
+					<label>NUMBER OF UNITS</label>
+					<input placeholder="1,000"></input>
+				</div>
+			</div>
+			<div class="form-input-parent" style="">
+				<div id="message_box" class="form-input-div form-input-div-1">
+					<label>MESSAGE <span class="form-req">*</span></label>
+					<textarea></textarea>
+				</div>
+			</div>
+			<div class="form-input-parent" style="">
+				<div id="submit_button" onclick="submit_form()" class="form-input-div form-input-div-1">
+					<button>SUBMIT</button>
+				</div>
+			</div>
+			<div class="resp_message">
+				Error Message
+			</div>
+		</div>
+	</div>
+</div>
+<div id="modal-bg">
+</div>

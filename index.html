@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="index.css">
+
+	</head>
+	<body>
+		<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+				  <!-- {
+			"imports": {
+			  "three": "https://unpkg.com/three@0.172.0/build/three.module.js",
+			  "ascii": "https://unpkg.com/three@0.172.0/examples/jsm/effects/AsciiEffect.js", 
+			  "STLLoader": "https://unpkg.com/three@0.172.0/examples/jsm/loaders/STLLoader.js", 
+			}
+		  } -->
+
+		<script type="importmap">
+		  {
+			"imports": {
+			  "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+			  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"
+			}
+		  }
+		</script>
+
+		
+
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<header class="main-header">
+				<div class="left-header">
+					<div class="left-bg">
+					</div>
+				</div>
+				<div class="center-header">
+					<a href="/"><img class="header-logo" src="res/logo.png"></a>
+					<div class="header-links">
+						<a href="about">
+							<div>About</div>
+						</a>
+						<a href="#" onclick="show_modal()">
+							<div>Contact</div>
+						</a>
+					</div>
+				</div>
+				<div class="right-header">
+					<div class="right-bg">
+					</div>
+				</div>
+			</header>
+			<div class="main-content">
+				<div class="left-content">
+					<div class="left-bg"></div>
+				</div>
+				<div class="center-content">
+					<div class="content-tagline">
+						Hardware for the Next Generation of EVs
+						<div class="subtagline">
+							Lighter, Faster, Cheaper, Easier 
+						</div>
+					</div>
+					<div class="content-model">
+            			<div ref="threeRef" style="width: 100%; height: 100%;"></div>
+					</div>
+				</div>
+				<div class="right-content">
+					<div class="right-bg"></div>
+				</div>
+			</div>
+			<div class="products">
+				<div class="left-products">
+					<div class="left-bg"></div>
+				</div>
+				<div class="center-products center-bottom">
+					<div class="product-title">Products</div>
+					<div class="product-suite-title" style="padding-bottom: 2rem;">Motor Controllers</div>
+					<div class="product-suite">
+						<div class="product-entry">
+							<div class="product-entry-title">
+								Threshold
+							</div>
+							<img src="res/threshold.png" alt="Placeholder Image" class="product-preview-img">
+							<a class="preorder-button">Coming Q2 '25</a>
+						</div>
+						<div class="product-entry">
+							<div class="product-entry-title">
+								Junction	
+							</div>
+							<img src="res/hidden_threshold.png" alt="Placeholder Image" class="product-preview-img">
+							<a class="preorder-button">Coming Q4 '25</a>
+						</div>
+						<div class="product-entry">
+							<div class="product-entry-title">
+								Bandgap	
+							</div>
+							<img src="res/bandgap_nocann.png" alt="Bandgap Product Image" class="product-preview-img">
+							<a class="preorder-button">Coming Q3 '25</a>
+						</div>
+						<div class="product-entry">
+							<div class="product-entry-title">
+								Avalanche	
+							</div>
+							<img src="res/hidden_threshold.png" alt="Placeholder Image" class="product-preview-img">
+							<a class="preorder-button">Coming Q4 '25</a>
+						</div>
+					</div>
+					<div class="spec-header">
+						Electrical
+					</div>
+					<div class="center-products">
+						<div class="product-suite">
+							<div class="product-entry spec">
+								<div class="spec-title">Voltage</div>
+								<div>
+									1200 V<sub>BR</sub>
+								</div>
+								<div>
+									1000 V<sub>DC</sub>
+								</div>
+								<br>
+								<div class="spec-title">Current</div>
+								<div>
+									15 A<sub>RMS</sub> (peak)
+								</div>
+								<div>
+									10 A<sub>RMS</sub> (cont)
+								</div>
+								<br>
+								<div class="spec-title">Power</div>
+								<div>
+									15 kW (peak)
+								</div>
+								<div>
+									10 kW (cont)
+								</div>
+								<br>
+								<div class="spec-title">Efficiency</div>
+								<div>
+									>99% (nom.)
+								</div>
+								<div>
+									98% (at peak power)
+								</div>
+							</div>
+							<div class="product-entry spec">
+								<div class="spec-title">Voltage</div>
+								<div>
+									650 V<sub>BR</sub>
+								</div>
+								<div>
+									600 V<sub>DC</sub>
+								</div>
+								<br>
+								<div class="spec-title">Current</div>
+								<div>
+									175 A<sub>RMS</sub>
+									<br><br>
+								</div>
+								<br>
+								<div class="spec-title">Power</div>
+								<div>
+									85 kW
+								</div>
+								<br>
+								<br>
+								<div class="spec-title">Efficiency</div>
+								<div>
+									>99% (nom.)
+								</div>
+								<br>
+								<br>
+							</div>
+							<div class="product-entry spec">
+								<div class="spec-title">Voltage</div>
+								<div>
+									650 V<sub>BR</sub>
+								</div>
+								<div>
+									600 V<sub>DC</sub>
+								</div>
+								<br>
+								<div class="spec-title">Current</div>
+								<div>
+									350 A<sub>RMS</sub>
+									<br><br>
+								</div>
+								<br>
+								<div class="spec-title">Power</div>
+								<div>
+									200 kW
+								</div>
+								<br>
+								<br>
+								<div class="spec-title">Efficiency</div>
+								<div>
+									>99% (nom.)
+								</div>
+								<br>
+								<br>
+							</div>
+							<div class="product-entry spec">
+								<div class="spec-title">Voltage</div>
+								<div>
+									650 V<sub>BR</sub>
+								</div>
+								<div>
+									600 V<sub>DC</sub>
+								</div>
+								<br>
+								<div class="spec-title">Current</div>
+								<div>
+									500 A<sub>RMS</sub>
+									<br><br>
+								</div>
+								<br>
+								<div class="spec-title">Power</div>
+								<div>
+									275 kW
+								</div>
+								<br>
+								<br>
+								<div class="spec-title">Efficiency</div>
+								<div>
+									>99% (nom.)
+								</div>
+								<br>
+								<br>
+							</div>
+						</div>
+					</div>
+					<div class="spec-header">
+						Mechanical	
+					</div>
+					<div class="center-products">
+						<div class="product-suite">
+							<div class="product-entry spec">
+								<div class="spec-title">Volume</div>
+								<div>
+									0.5L
+								</div>
+								<br>
+								<div class="spec-title">Environmental</div>
+								<div>
+									IP68
+								</div>
+								<br>
+								<div class="spec-title">Operating Temperature</div>
+								<div>
+									-50°C to 80°C
+								</div>
+								<br>
+							</div>
+							<div class="product-entry spec">
+								<div class="spec-title">Volume</div>
+								<div>
+									0.75L
+								</div>
+								<br>
+								<div class="spec-title">Environmental</div>
+								<div>
+									IP68
+								</div>
+								<br>
+								<div class="spec-title">Operating Temperature</div>
+								<div>
+									-50°C to 80°C
+								</div>
+								<br>
+							</div>
+							<div class="product-entry spec">
+								<div class="spec-title">Volume</div>
+								<div>
+									1.5L
+								</div>
+								<br>
+								<div class="spec-title">Environmental</div>
+								<div>
+									IP68
+								</div>
+								<br>
+								<div class="spec-title">Operating Temperature</div>
+								<div>
+									-50°C to 80°C
+								</div>
+								<br>
+							</div>
+							<div class="product-entry spec">
+								<div class="spec-title">Volume</div>
+								<div>
+									2L
+								</div>
+								<br>
+								<div class="spec-title">Environmental</div>
+								<div>
+									IP68
+								</div>
+								<br>
+								<div class="spec-title">Operating Temperature</div>
+								<div>
+									-50°C to 80°C
+								</div>
+								<br>
+							</div>
+						</div>
+						<div style="padding-top: 2rem" class="product-suite-title">Motors</div>
+						<div class="coming-soon">Coming early 2026</div>
+					</div>
+				</div>
+				<div class="right-products">
+					<div class="right-bg"></div>
+				</div>
+			</div>
+
+			<div class="footer">
+				<div class="contact-footer">
+					Contact us at <a href="mailto:sales@steinmetzmotors.com">sales@steinmetzmotors.com</a>
+				</div>
+				<div>
+					© 2025 Steinmetz, Inc. All rights reserved.
+				</div>
+			</div>
+		</div>
+	
+	<script type="module" src="Inverter3D.js"></script>
+	</body>
+	<script src="modal.js"></script>
+</html>
